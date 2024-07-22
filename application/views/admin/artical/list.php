@@ -7,13 +7,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Categories</h1>
+                            <h1 class="m-0 text-dark">Article</h1>
                         </div><!-- /.col -->
                         
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item active">Article</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -45,7 +45,7 @@
                                     <div class="card-title">
                                         <form class="form-inline ml-3" id="searchFrm" name="searchFrm" method="get" action="">
                                             <div class="input-group input-group-sm">
-                                                <input class="form-control form-control-navbar" type="text" value="" name="q" placeholder="Search" aria-label="Search">
+                                                <input class="form-control form-control-navbar" type="text" value="<?php echo $q; ?>" name="q" placeholder="Search" aria-label="Search">
                                                 <div class="input-group-append">
                                                 <button class="btn btn-navbar" type="submit">
                                                     <i class="fas fa-search"></i>
@@ -55,7 +55,7 @@
                                         </form>
                                     </div>
                                     <div class="card-tools">
-                                        <a href="<?php echo base_url().'admin/category/create'?>" class="btn btn-primary"><i class="fas fas-plus"></i>Create</a>
+                                        <a href="<?php echo base_url().'admin/artical/create'?>" class="btn btn-primary"><i class="fas fas-plus"></i>Create</a>
                                     </div>
                                 </div>
 
@@ -63,16 +63,38 @@
                                     <table class="table">
                                         <tr>
                                             <th width="50">#</th>
-                                            <th>Name</th>
+                                            <th width="50">image</th>
+                                            <th>Title</th>
+                                            <th>description</th>
+                                            <th>Author</th>
                                             <th width="100">Status</th>
                                             <th class="text-center" width="160">Action</th>
                                         </tr>
 
-                                        <?php if(!empty($category)){ ?>
-                                            <?php foreach($category as $row){ ?>
+                                        <?php if(!empty($artical)){ ?>
+                                            <?php foreach($artical as $row){ ?>
                                                 <tr>
                                                     <td><?php echo $row['id']; ?></td>
-                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td>
+                                                        <?php 
+                                                            $path = './public/uploads/artical/thumb/'.$row['image'];
+                                                            // echo file_exists($path);
+                                                            // echo '-----';
+                                                            // echo $path;
+                                                            if(file_exists($path) && $row['image'] != '') {
+                                                                ?>
+                                                                    <img class="w-100" src="<?php echo base_url().'public/uploads/artical/thumb/'. $row['image']; ?>">
+                                                                    <?php
+                                                            } else {
+                                                                ?>
+                                                                    <img class="w-100" src="<?php echo base_url() .'public/uploads/no_image.jpg'; ?>">
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php echo $row['title']; ?></td>
+                                                    <td><?php echo $row['description']; ?></td>
+                                                    <td><?php echo $row['author']; ?></td>
                                                     <td>
                                                         <?php if($row['status'] == 1){ ?> 
                                                             <span class="badge  badge-success">Active</span>
@@ -81,9 +103,9 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url() .'admin/category/edit/'.$row['id'] ?>" class="btn btn-primary btn-sm">
+                                                        <a href="<?php echo base_url() .'admin/artical/edit/'.$row['id'] ?>" class="btn btn-primary btn-sm">
                                                             <i class="far fa-edit"></i> Edit</a>
-                                                        <a href="javascript:void(0);" onClick="deleteCtegory(<?php echo $row['id']; ?>)" class="btn btn-danger btn-sm">
+                                                        <a href="javascript:void(0);" onClick="deleteArtical(<?php echo $row['id']; ?>)" class="btn btn-danger btn-sm">
                                                             <i class="far fa-trash-alt"></i> Delete</a>
                                                     </td>
                                                 </tr>
@@ -92,6 +114,10 @@
                                         <?php } ?>
                                         
                                     </table>
+                                    
+                                    <nav>
+                                        <?php echo $pagination_link; ?>
+                                    </nav>
                                 </div>
 
                             </div>
@@ -108,9 +134,9 @@
 <?php $this->load->view("admin/footer") ?>
 
 <script>
-    function deleteCtegory(id){
-        if(confirm('Sure to delete category?') == true){
-            window.location.href = '<?php echo base_url().'admin/category/delete/'; ?>' + id;
+    function deleteArtical(id){
+        if(confirm('Sure to delete Artical?') == true){
+            window.location.href = '<?php echo base_url().'admin/artical/delete/'; ?>' + id;
         }
     }
 </script>

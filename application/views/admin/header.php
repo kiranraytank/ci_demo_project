@@ -17,6 +17,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="<?php echo base_url(); ?>/public/admin/dist/css/adminlte.min.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        
+        <!-- Editor css style -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>/public/admin/plugins/summernote/summernote-bs4.css">
+
     </head>
 
     <body class="hold-transition sidebar-mini">
@@ -52,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="index3.html" class="brand-link bg-white">
+                <a href="<?php echo base_url(). 'admin/home/index'; ?>" class="brand-link bg-white">
                 <span class="brand-text font-weight ml-4">CI Web Application</span>
                 </a>
 
@@ -62,15 +66,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url().'admin/home/index'; ?>" class="nav-link">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p> Dashboard </p>
                                 </a>
                             </li>
                             <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                            <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule == 'category') ? "menu-open" : '' ?>">
+                                <a href="<?php echo base_url().'admin/category/list'; ?>" class="nav-link">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p>
                                         Categories
@@ -79,22 +83,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link active">
+                                        <a href="<?php echo base_url().'admin/category/create'; ?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == 'category' && !empty($subModule) && $subModule == 'createCategory') ? "active" : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Categories</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="<?php echo base_url().'admin/category/index'; ?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == 'category' && !empty($subModule) && $subModule == 'viewCategory') ? "active" : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Edit Categories</p>
+                                            <p>View Categories</p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
+                            <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule == 'artical') ? "menu-open" : '' ?>">
+                                <a href="<?php echo base_url().'admin/artical/list'; ?>" class="nav-link">
                                     <i class="nav-icon far fa-circle"></i>
                                     <p>
                                         Article
@@ -103,15 +107,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link active">
+                                        <a href="<?php echo base_url().'admin/artical/create'; ?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == 'artical' && !empty($subModule) && $subModule == 'createArtical') ? "active" : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Article</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="<?php echo base_url().'admin/artical/index'; ?>" class="nav-link  <?php echo (!empty($mainModule) && $mainModule == 'artical' && !empty($subModule) && $subModule == 'viewArtical') ? "active" : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Edit Article</p>
+                                            <p>View Article</p>
                                         </a>
                                     </li>
                                 </ul>

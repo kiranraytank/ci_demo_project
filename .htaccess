@@ -1,6 +1,6 @@
 
 RewriteEngine on
-RewriteBase /codeigniter_learn/website_demo_ci/
+RewriteBase /codeigniter_learn/ci_demo_project/
 # RewriteCond $1 !^(index\.php)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

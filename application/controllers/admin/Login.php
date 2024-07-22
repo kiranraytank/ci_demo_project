@@ -3,6 +3,11 @@
 class Login extends CI_Controller {
     public function index()
     {
+        $admin = $this->session->userdata("admin");
+
+        if(!empty($admin)){
+            redirect(base_url(). 'admin/home/index');
+        }
 
         $this->load->library('form_validation');  
         $this->load->view("admin/login");

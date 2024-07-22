@@ -1,0 +1,13 @@
+.navbar .navbar-nav .navbar-link {
+    color: #000;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+#carousel-item {
+    height: 100px !important;
+}
